@@ -9,7 +9,7 @@ export const Header = () => {
                 <Link to='/'>CampHolidays</Link>
             </span>
             <span className='flex space-x-2'>
-                <Link to='/sign-in' className='flex items-center text-sky-950 bg-white px-3 font-bold hover:bg-sky-800 hover:text-white m-4'>Sign In</Link>
+                <Link to='/sign-in' className='flex items-center text-sky-950 bg-white px-3 font-bold hover:bg-sky-800 hover:text-white m-4 rounded-lg'>Sign In</Link>
             </span>
         </div>
     </div>
