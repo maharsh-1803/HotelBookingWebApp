@@ -1,9 +1,20 @@
 import express,{Request,Response} from 'express'
 import User from '../models/user';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+const { body, validationResult}= require('express-validator');
 const router = express.Router();
 //api/users/register
-router.post('/register',async (req:Request,res:Response)=>{
+router.post('/register',[
+    body("firstName","first name is required").isString(),
+    body("lastName","last name is required").isString(),
+    body("email","Email is required").isEmail(),
+    body("password","Password required 6 or more character").isLength({min:6}) 
+] ,async (req:Request,res:Response)=>{
+    const errors = validationResult(req)
+    if(!errors.isEmpty())
+    {
+        return res.status(400).json({message:errors.array()})
+    }
     try {
         let user = await User.findOne({
             email:req.body.email,
@@ -29,3 +40,5 @@ router.post('/register',async (req:Request,res:Response)=>{
 })
 
 export default router;
+
+
