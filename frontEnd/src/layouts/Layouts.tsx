@@ -10,7 +10,7 @@ export const Layouts = ({children}:Props) => {
   return (
     <div className='flex flex-col min-h-screen'>
         <Header/>
-        <Header_below/>
+        {/* <Header_below/> */}
         <div className='container mx-auto py-10 flex-1'>{children}</div>
         <Footer/>
     </div>
