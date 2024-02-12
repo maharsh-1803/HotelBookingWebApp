@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header } from '../components/Header'
-import { Header_below } from '../components/Header_below';
+// import { Header_below } from '../components/Header_below';
 import { Footer } from '../components/Footer';
 
 interface Props{
