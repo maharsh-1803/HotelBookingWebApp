@@ -1,14 +1,14 @@
 import express,{Request,Response} from 'express'
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
-const { body, validationResult}= require('express-validator');
+const { check, validationResult}= require('express-validator');
 const router = express.Router();
 //api/users/register
 router.post('/register',[
-    body("firstName","first name is required").isString(),
-    body("lastName","last name is required").isString(),
-    body("email","Email is required").isEmail(),
-    body("password","Password required 6 or more character").isLength({min:6}) 
+    check("firstName","first name is required").isString(),
+    check("lastName","last name is required").isString(),
+    check("email","Email is required").isEmail(),
+    check("password","Password required 6 or more character").isLength({min:6}) 
 ] ,async (req:Request,res:Response)=>{
     const errors = validationResult(req)
     if(!errors.isEmpty())
@@ -32,7 +32,7 @@ router.post('/register',[
             secure:process.env.NODE_ENV === "production",
             maxAge : 86400000,
         })
-        return res.sendStatus(200);
+        return res.status(200).send({message:"User registered Ok"});
     } catch (error) {
         console.log(error)
         res.status(500).send({message:"something went wrong"});
