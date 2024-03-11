@@ -4,6 +4,7 @@ import "dotenv/config"
 import mongoose from 'mongoose'
 import userRoutes from './routes/users'
 import authRoutes from './routes/auth'
+import cookieParser from 'cookie-parser'
 
 mongoose.connect(process.env.CONNECTION_STRING as string)
 
