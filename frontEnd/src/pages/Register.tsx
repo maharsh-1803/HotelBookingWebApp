@@ -104,7 +104,7 @@ export const Register = () => {
       <span>
         <button
           type="submit"
-          className="bg-sky-900 text-white p-2 font-bold hover:bg-sky-800 text-xl"
+          className="bg-sky-900 text-white p-2 font-bold hover:bg-sky-800 text-xl rounded-md"
         >
           Create Account
         </button>

@@ -24,6 +24,9 @@ const navigate = useNavigate();
   const onSubmit = handleSubmit((data)=>{
     mutation.mutate(data)
   });
+  const handleClick = ()=>{
+    navigate('/register')
+  }
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
       <h2 className="text-3xl font-bold">Sign In</h2>
@@ -43,7 +46,7 @@ const navigate = useNavigate();
         Password
         <input
           type="password"
-          className="border rounded w-full py-1 px-2 font-normal"
+          className="border rounded block w-full py-1 px-2 font-normal"
           {...register("password", {
             required: "This field is required",
             minLength: {
@@ -59,9 +62,16 @@ const navigate = useNavigate();
       <span>
         <button
           type="submit"
-          className="bg-sky-900 text-white p-2 font-bold hover:bg-sky-800 text-xl"
+          className="bg-sky-900 text-white p-2 font-bold hover:bg-sky-800 text-xl rounded-md"
         >
           Login
+        </button>
+        <button
+          onClick={handleClick}
+          type="submit"
+          className="bg-sky-900 text-white p-2 font-bold hover:bg-sky-800 text-xl rounded-md mx-3"
+        >
+          register
         </button>
       </span>
     </form>
