@@ -1,3 +1,7 @@
 fITBsoWvkdWY4Q4F
 
 HW5RFZT5M7G0C8Mg
+
+test_db : K2f1Z8XKAZZXAwP5
+
+connection_string_e2e_db : mongodb+srv://maharshpatel1803:<password>@e2e-tests.mtf95u0.mongodb.net/?retryWrites=true&w=majority&appName=e2e-tests
