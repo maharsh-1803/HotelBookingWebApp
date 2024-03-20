@@ -2,30 +2,34 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from '../api-client';
 import { useAppContext } from "../contexts/AppContext";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export type SignInFormData = {
   email: string;
   password: string;
 };
+
 const SignIn = () => {
-const {showToast}=useAppContext();
-const navigate = useNavigate();
-const queryClient = useQueryClient();
-  const { register,formState:{errors} , handleSubmit } = useForm<SignInFormData>();
-  const mutation = useMutation(apiClient.signIn,{
-    onSuccess:async()=>{
-        showToast({message:"Sign in successful",type:"SUCCESS"});
-        await queryClient.invalidateQueries("validateToken");
-        navigate("/");
-    },onError:(error:Error)=>{
-        showToast({message:error.message,type:"ERROR"})
+  const { showToast } = useAppContext();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const { register, formState: { errors }, handleSubmit } = useForm<SignInFormData>();
+
+  const mutation = useMutation(apiClient.signIn, {
+    onSuccess: async () => {
+      showToast({ message: "Sign in successful", type: "SUCCESS" });
+      await queryClient.invalidateQueries("validateToken");
+      navigate("/");
+    },
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: "ERROR" });
     }
   });
 
-  const onSubmit = handleSubmit((data)=>{
-    mutation.mutate(data)
+  const onSubmit = handleSubmit((data) => {
+    mutation.mutate(data);
   });
 
   return (
@@ -38,7 +42,7 @@ const queryClient = useQueryClient();
           type="email"
           className="border rounded w-full py-1 px-2 font-normal"
           {...register("email", { required: "This field is required" })}
-        ></input>
+        />
         {errors.email && (
           <span className="text-red-500">{errors.email.message}</span>
         )}
@@ -60,7 +64,7 @@ const queryClient = useQueryClient();
           <span className="text-red-500">{errors.password.message}</span>
         )}
       </label>
-      <span className="flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <button
           type="submit"
           className="bg-sky-900 text-white p-2 font-bold hover:bg-sky-800 text-xl rounded-md"
@@ -68,10 +72,11 @@ const queryClient = useQueryClient();
           Login
         </button>
         <span className="text-sm">
-          Not Registerd? <Link to='/register' className="text-sky-950 underline">Click here</Link>
+          Not Registered? <Link to='/register' className="text-sky-950 underline">Click here</Link>
         </span>
-      </span>
+      </div>
     </form>
   );
 };
+
 export default SignIn;

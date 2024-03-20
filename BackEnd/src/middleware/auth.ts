@@ -1,5 +1,4 @@
-import { NextFunction } from "express-serve-static-core";
-import {Request,Response} from 'express'
+import { NextFunction,Request,Response } from "express";
 import jwt, { JwtPayload } from 'jsonwebtoken'
 
 
