@@ -40,15 +40,17 @@ export const signIn = async(formData:SignInFormData)=>{
 
 export const validateToken = async () => {
     const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
-      credentials: "include",
+        credentials: "include",
     });
-  
+
     if (!response.ok) {
-      throw new Error("Token invalid");
+        const errorBody = await response.json();
+        throw new Error(`Failed to validate token: ${errorBody.message || response.statusText}`);
     }
-  
+
     return response.json();
-  };
+};
+
   
 
 export const signOut = async ()=>{
