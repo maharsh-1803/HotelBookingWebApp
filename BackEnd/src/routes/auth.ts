@@ -38,7 +38,7 @@ router.post(
         { userId: user.id },
         process.env.JWT_SECRET_KEY as string,
         {
-          expiresIn: "1d",
+          expiresIn: "10d",
         }
       );
 
@@ -66,4 +66,4 @@ router.post("/logout", (req: Request, res: Response) => {
   res.send();
 });
 
-export default router;
+export default router;  

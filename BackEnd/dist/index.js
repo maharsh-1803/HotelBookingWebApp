@@ -21,6 +21,6 @@ app.use((0, cors_1.default)({
 app.use(express_1.default.static(path_1.default.join(__dirname, "../../frontEnd/dist")));
 app.use('/api/auth', auth_1.default);
 app.use('/api/users', users_1.default);
-app.listen(5000, () => {
-    console.log("Server is running on port 5000");
+app.listen(4000, () => {
+    console.log("Server is running on port 4000");
 });

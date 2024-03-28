@@ -3,10 +3,10 @@ import Layouts from './layouts/Layouts';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
 import AddHotel from './pages/AddHotel';
-// import { useAppContext } from './contexts/AppContext';
+import { useAppContext } from './contexts/AppContext';
 
 const App = () => {
-  // const {isLoggedIn} = useAppContext();
+  const {isLoggedIn} = useAppContext();
   return (
     <div>
       <Router>
@@ -16,9 +16,9 @@ const App = () => {
           <Route path='/register' element={<Layouts><Register/></Layouts>}></Route>
           <Route path='*' element={<Navigate to='/' />}></Route>
           <Route path='/sign-in' element={<Layouts><SignIn/></Layouts>}/>
-          {/* {isLoggedIn && <> */}
+          {isLoggedIn && <>
             <Route path="/add-hotel" element={<Layouts><AddHotel/></Layouts>}/>
-          {/* </>} */}
+          </>}
           <Route path="*" element={<Navigate to="/"/>}></Route>
         </Routes>
       </Router>

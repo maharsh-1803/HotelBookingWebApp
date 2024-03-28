@@ -7,6 +7,7 @@ import authRoutes from './routes/auth'
 import path from 'path'
 import {v2 as cloudinary} from 'cloudinary';
 import myHotelRoutes from './routes/my-hotels';
+import cookieParser from 'cookie-parser';
 
 cloudinary.config({
     cloud_name:process.env.CLOUDINARY_CLOUD_NANE,
@@ -18,6 +19,7 @@ cloudinary.config({
 mongoose.connect(process.env.CONNECTION_STRING as string)
 
 const app = express()
+app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
@@ -31,6 +33,6 @@ app.use('/api/auth',authRoutes)
 app.use('/api/users',userRoutes)
 app.use('/api/my-hotels',myHotelRoutes);
 
-app.listen(5000,()=>{
-    console.log("Server is running on port 5000")
+app.listen(4000,()=>{
+    console.log("Server is running on port 4000")
 })

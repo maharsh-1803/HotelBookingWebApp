@@ -42,7 +42,7 @@ export const validateToken = async () => {
     const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
         credentials: "include",
     });
-
+    console.log("response in validatetoken",response)
     if (!response.ok) {
         const errorBody = await response.json();
         throw new Error(`Failed to validate token: ${errorBody.message || response.statusText}`);
