@@ -1,8 +1,9 @@
 import {test,expect} from '@playwright/test';
+import path from 'path';
 
 const UI_URL = "http://localhost:5174/";
 test.beforeEach(async ({page})=>{
-    await page.goto(UI_URL);
+    await page.goto(`${UI_URL}add-hotel`);
     await page.getByRole("link",{name:"Sign In"}).click();
     await expect(page.getByRole("heading",{name:"Sign In"})).toBeVisible();
     await page.locator("[name=email]").fill("maharsh@gmail.com")
@@ -12,7 +13,7 @@ test.beforeEach(async ({page})=>{
 })
 
 test("Should allow user to add a hotel",async ({page})=>{
-    await page.goto(`${UI_URL}/add-hotel`);
+    await page.goto(`${UI_URL}add-hotel`);
 
     await page.locator('[name="name"]').fill("Test Hotel");
     await page.locator('[name="city"]').fill("Test city");
@@ -25,7 +26,13 @@ test("Should allow user to add a hotel",async ({page})=>{
     await page.getByLabel("Parking").check();
     await page.locator('[name="adultCount"]').fill("2");
     await page.locator('[name="childCount"]').fill("4");
-    
 
+    await page.setInputFiles('[name="imageFiles"]',[
+        path.join(__dirname,"files","1.png"),
+        path.join(__dirname,"files","2.png"),
+    ]);
+
+    await page.getByRole("button",{name:"Save"}).click();
+    await expect(page.getByText("Hotel saved!")).toBeVisible();
 
 })
