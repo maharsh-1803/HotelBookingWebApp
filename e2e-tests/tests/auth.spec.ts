@@ -13,7 +13,6 @@ test('should allow the user to sign in', async ({ page }) => {
   await expect(page.getByRole("link",{name:"My Hotels"})).toBeVisible();  
   await expect(page.getByRole("button",{name:"Sign Out"})).toBeVisible();  
 
-
 });
 
 test('should allow user to register', async ({ page }) => {

@@ -19,7 +19,7 @@ cloudinary.config({
 mongoose.connect(process.env.CONNECTION_STRING as string)
 
 const app = express()
-app.use(cookieParser())
+app.use(cookieParser()) 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
@@ -32,6 +32,10 @@ app.use(express.static(path.join(__dirname,"../../frontEnd/dist")));
 app.use('/api/auth',authRoutes)
 app.use('/api/users',userRoutes)
 app.use('/api/my-hotels',myHotelRoutes);
+
+app.get("*",(req:Request,res:Response)=>{
+    res.sendFile(path.join(__dirname,"../../frontEnd/dist/index.html")); 
+})
 
 app.listen(4000,()=>{
     console.log("Server is running on port 4000")
